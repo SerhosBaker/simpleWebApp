@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    name: social_education_admin
+    url: jdbc:postgresql://pg-invest-education-admin-qa.m1.invest.cloud:5432/invest_education_admin?ApplicationName=${spring.application.name}
+    driverClassName: org.postgresql.Driver
+    username: liquibase
+    password: liquibase
+    hikari:
+      pool_name: social_education_admin
+      maximum-pool-size: 1
+      max-lifetime: 3600000
+      connection-test-query: SELECT 1
+
+server:
+  port: 8080
+
+apple:
+  id: 0
+  name: green
