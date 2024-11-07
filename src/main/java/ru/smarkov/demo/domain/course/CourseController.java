@@ -1,11 +1,15 @@
 package ru.smarkov.demo.domain.course;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.smarkov.demo.configuration.kafka.DemoProducerCallback;
 import ru.smarkov.demo.domain.course.dto.CourseDto;
 import ru.smarkov.demo.domain.course.dto.ExtendedCourseDto;
 import ru.smarkov.demo.domain.course.mapper.SimpleSourceDestinationMapper;
@@ -14,6 +18,7 @@ import ru.smarkov.demo.domain.person.Scorpion;
 import ru.smarkov.demo.domain.person.Subzero;
 import ru.smarkov.demo.util.TestClass;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 @Controller
@@ -26,6 +31,9 @@ public class CourseController {
 
     @Autowired
     private Subzero subzero;
+
+    @Autowired
+    private KafkaProducer producer;
 
     @GetMapping("/first")
     public CourseDto home() {
@@ -42,5 +50,31 @@ public class CourseController {
         System.out.println("best live:" + subzero.getLive());
 
         return mapper.destinationToSource(extCourse);
+    }
+
+    @PostMapping("/sendKafka")
+    public void sendKafka() {
+        ProducerRecord<String, String> record = new ProducerRecord<>("education.activity-progress",
+                "test record key sync",
+                "test record value sync");
+        try {
+            producer.send(record).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping("/sendKafkaAsync")
+    public void sendKafkaAsync() {
+        ProducerRecord<String, String> record = new ProducerRecord<>(
+                "education.activity-progress",
+                "test record key async",
+                "test record value async");
+        // "test record key".getBytes()
+        try {
+            producer.send(record, new DemoProducerCallback());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

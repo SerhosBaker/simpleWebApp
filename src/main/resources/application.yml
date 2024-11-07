@@ -17,3 +17,25 @@ server:
 apple:
   id: 0
   name: green
+
+logging:
+  level:
+    org.springframework: ERROR
+    io.app: TRACE
+  file:
+    path: /logs
+
+kafka:
+  group-id: education.s-b-markov
+  education:
+    producer:
+      bootstrap-servers: ds-qa-invest-kafka-1.ds.invest.cloud:9093,ds-qa-invest-kafka-2.ds.invest.cloud:9093,ds-qa-invest-kafka-3.ds.invest.cloud:9093
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        request.timeout.ms: 10000
+        security:
+          protocol: SASL_PLAINTEXT
+        sasl:
+          mechanism: SCRAM-SHA-512
+          jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="education" password="0z:,*>d#610>";
