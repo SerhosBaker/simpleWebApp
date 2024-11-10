@@ -17,7 +17,7 @@ import static org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS
 public class KafkaConfiguration {
     @Bean
     @Primary
-    @ConfigurationProperties("kafka.education.producer")
+    @ConfigurationProperties("kafka.education")
     public KafkaProperties educationKafkaProperties() {
         return new KafkaProperties();
     }

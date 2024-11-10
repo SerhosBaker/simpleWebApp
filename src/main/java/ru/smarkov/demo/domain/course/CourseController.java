@@ -21,6 +21,8 @@ import ru.smarkov.demo.util.TestClass;
 import java.util.Arrays;
 import java.util.UUID;
 
+import static java.util.UUID.randomUUID;
+
 @Controller
 @RestController
 @RequestMapping("/course")
@@ -37,7 +39,7 @@ public class CourseController {
 
     @GetMapping("/first")
     public CourseDto home() {
-        ExtendedCourseDto extCourse = new ExtendedCourseDto(UUID.randomUUID(), "course 1 the best");
+        ExtendedCourseDto extCourse = new ExtendedCourseDto(randomUUID(), "course 1 the best");
 
         Scorpion sc = new Scorpion();
 
@@ -54,9 +56,13 @@ public class CourseController {
 
     @PostMapping("/sendKafka")
     public void sendKafka() {
-        ProducerRecord<String, String> record = new ProducerRecord<>("education.activity-progress",
+
+        CourseDto course = new CourseDto(randomUUID(), "First course about stocks");
+
+        ProducerRecord<String, CourseDto> record = new ProducerRecord<>(
+                "education.activity-progress",
                 "test record key sync",
-                "test record value sync");
+                course);
         try {
             producer.send(record).get();
         } catch (Exception e) {
@@ -66,10 +72,12 @@ public class CourseController {
 
     @PostMapping("/sendKafkaAsync")
     public void sendKafkaAsync() {
-        ProducerRecord<String, String> record = new ProducerRecord<>(
+        CourseDto course = new CourseDto(randomUUID(), "First course about stocks");
+
+        ProducerRecord<String, CourseDto> record = new ProducerRecord<>(
                 "education.activity-progress",
                 "test record key async",
-                "test record value async");
+                course);
         // "test record key".getBytes()
         try {
             producer.send(record, new DemoProducerCallback());
