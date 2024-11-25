@@ -31,8 +31,20 @@ kafka:
     bootstrap-servers: ds-qa-invest-kafka-1.ds.invest.cloud:9093,ds-qa-invest-kafka-2.ds.invest.cloud:9093,ds-qa-invest-kafka-3.ds.invest.cloud:9093
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: ru.smarkov.demo.configuration.kafka.CourseSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
+        request.timeout.ms: 10000
+        security:
+          protocol: SASL_PLAINTEXT
+        sasl:
+          mechanism: SCRAM-SHA-512
+          jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="education" password="0z:,*>d#610>";
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: ru.smarkov.demo.configuration.kafka.CourseDeserializer
+      group-id: education.test.consumer
+      properties:
+        spring.json.trusted.packages: "*"
         request.timeout.ms: 10000
         security:
           protocol: SASL_PLAINTEXT
