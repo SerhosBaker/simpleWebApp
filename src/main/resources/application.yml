@@ -46,6 +46,7 @@ kafka:
       properties:
         spring.json.trusted.packages: "*"
         request.timeout.ms: 10000
+        fetch.max.wait.ms: 100
         security:
           protocol: SASL_PLAINTEXT
         sasl:

@@ -1,29 +1,20 @@
 package ru.smarkov.demo.configuration.kafka;
 
-import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.common.serialization.StringDeserializer;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.config.KafkaListenerContainerFactory;
-import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import ru.smarkov.demo.domain.course.dto.CourseDto;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-
-import static org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG;
 
 @Configuration
 public class KafkaConfiguration {
@@ -35,14 +26,20 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public KafkaProducer educationKafkaProducer(KafkaProperties educationKafkaProperties) {
-        return new KafkaProducer(educationKafkaProperties.buildProducerProperties());
+    public KafkaProducer<String, CourseDto> educationKafkaProducer(KafkaProperties educationKafkaProperties) {
+        return new KafkaProducer<>(educationKafkaProperties.buildProducerProperties());
+    }
+
+    @Bean
+    public KafkaConsumer<String, CourseDto> educationKafkaConsumer(KafkaProperties educationKafkaProperties) {
+        return new KafkaConsumer<>(educationKafkaProperties.buildConsumerProperties());
     }
 
     @Bean
     public ConsumerFactory<String, CourseDto> consumerFactory(KafkaProperties educationKafkaProperties) {
         Map<String, Object> consumerProperties = educationKafkaProperties.buildConsumerProperties();
         consumerProperties.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
         return new DefaultKafkaConsumerFactory<>(consumerProperties);
     }
