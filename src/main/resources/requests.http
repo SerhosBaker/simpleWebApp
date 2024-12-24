@@ -16,3 +16,6 @@ Content-Type: application/json
 ###
 POST http://localhost:8080/course/subtractOffset2
 Content-Type: application/json
+
+###
+POST http://localhost:8080/book/sendmail
