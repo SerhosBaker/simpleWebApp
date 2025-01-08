@@ -1,6 +1,7 @@
 package ru.smarkov.demo.domain.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,5 +18,10 @@ public class BookController {
     @PostMapping("/sendmail")
     public void sendMail() {
         mailSender.send(new MailInfo("2", "New books in out book store!"));
+    }
+
+    @GetMapping("/singletonJavaBook")
+    public int doSingleton() {
+        return SingletonJavaBook.getInstance().hashCode();
     }
 }

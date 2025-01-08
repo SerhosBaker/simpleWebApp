@@ -146,4 +146,8 @@ public class CourseController {
         // назначим новые смещения& предварительно проверяем, что такое смещение есть
         topicOffsets.forEach((key, value) -> System.out.printf("part: %s offset: %s%n", key, value));
     }
+//
+//    private void v1(){
+//        KStream<String, String> steam;
+//    }
 }
