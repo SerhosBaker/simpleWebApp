@@ -22,3 +22,9 @@ POST http://localhost:8080/book/sendmail
 
 ###
 GET http://localhost:8080/book/singletonJavaBook
+
+###
+GET http://localhost:8080/event/first
+
+###
+POST http://localhost:8080/event/postAny
