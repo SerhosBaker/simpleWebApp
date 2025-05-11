@@ -10,6 +10,8 @@ spring:
       maximum-pool-size: 1
       max-lifetime: 3600000
       connection-test-query: SELECT 1
+  jooq:
+    sql-dialect: Postgres
 
 server:
   port: 8080
