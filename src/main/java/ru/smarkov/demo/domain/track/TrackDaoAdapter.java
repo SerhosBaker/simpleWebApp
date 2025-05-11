@@ -1,6 +1,5 @@
 package ru.smarkov.demo.domain.track;
 
-import lombok.RequiredArgsConstructor;
 import org.jooq.Record2;
 import org.jooq.Result;
 import org.springframework.stereotype.Component;
@@ -12,10 +11,13 @@ import java.util.UUID;
 import static ru.smarkov.demo.jooq_3b.Tables.TRACK;
 
 @Component
-@RequiredArgsConstructor
 public class TrackDaoAdapter implements TrackRepository {
 
     private final TrackDao trackDao;
+
+    public TrackDaoAdapter(TrackDao trackDao) {
+        this.trackDao = trackDao;
+    }
 
     @Override
     public List<TrackDto> getAll() {

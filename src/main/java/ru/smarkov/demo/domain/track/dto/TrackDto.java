@@ -7,11 +7,5 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public final class TrackDto {
-    private UUID id;
-    private String title;
+public record TrackDto(UUID id, String title) {
 }
