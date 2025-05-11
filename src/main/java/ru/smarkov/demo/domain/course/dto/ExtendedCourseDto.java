@@ -3,21 +3,13 @@ package ru.smarkov.demo.domain.course.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
 
-public class CourseDto {
-
-    public CourseDto() {
-    }
-
-    public CourseDto(UUID id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
+@Getter
+@Setter
+public class ExtendedCourseDto {
     private UUID id;
     private String title;
 
@@ -34,6 +26,14 @@ public class CourseDto {
     }
 
     public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public ExtendedCourseDto() {
+    }
+
+    public ExtendedCourseDto(UUID id, String title) {
+        this.id = id;
         this.title = title;
     }
 }

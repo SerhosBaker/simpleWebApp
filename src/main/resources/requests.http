@@ -1,0 +1,33 @@
+GET http://localhost:8080/course/first
+Content-Type: application/json
+
+###
+POST http://localhost:8080/course/sendKafka
+Content-Type: application/json
+
+###
+POST http://localhost:8080/course/sendKafkaAsync
+Content-Type: application/json
+
+###
+POST http://localhost:8080/course/subtractOffset
+Content-Type: application/json
+
+###
+POST http://localhost:8080/course/subtractOffset2
+Content-Type: application/json
+
+###
+POST http://localhost:8080/book/sendmail
+
+###
+GET http://localhost:8080/book/singletonJavaBook
+
+###
+GET http://localhost:8080/event/first
+
+###
+POST http://localhost:8080/event/postAny
+
+###
+GET http://localhost:8080/track/first
