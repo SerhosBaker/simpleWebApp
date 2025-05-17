@@ -1,20 +1,14 @@
 package ru.smarkov.demo.domain.event;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.jooq.Record2;
+import org.jooq.Result;
 import ru.smarkov.demo.domain.event.dto.Event;
+import ru.smarkov.demo.domain.event.dto.EventDto;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
-public interface EventRepository extends JpaRepository<Event, UUID> {
-    Optional<Event> findById(UUID id);
-
-    Event save(Event event);
-
-    @Modifying
-    @Query(value = "INSERT INTO smarkov.event (id, position) VALUES (:id, cast(:position as bit varying))", nativeQuery = true)
-    void insertEvent(@Param("position") String position, @Param("id") UUID id);
+public interface EventRepository {
+    public List<EventDto> getAll();
+    public void printEventAndTask(UUID taskId) ;
 }

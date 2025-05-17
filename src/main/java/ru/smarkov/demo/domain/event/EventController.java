@@ -16,11 +16,11 @@ import java.util.UUID;
 public class EventController {
 
     @Autowired
-    private EventRepository eventRepository;
+    private JpaEventRepository jpaEventRepository;
 
     @GetMapping("/first")
     public String getFirst() {
-        Optional<Event> event = eventRepository.findById(UUID.fromString("d6726e18-5d5c-460c-adf6-0bd78192b102"));
+        Optional<Event> event = jpaEventRepository.findById(UUID.fromString("d6726e18-5d5c-460c-adf6-0bd78192b102"));
         return event.map(value -> String.valueOf(value.getPosition())).orElse("event not found");
     }
 
@@ -31,6 +31,6 @@ public class EventController {
         event.setId(UUID.randomUUID());
         event.setPosition("01110"); // 01110111111 упадет, тк длинна поля строго 5 бит
 
-        eventRepository.insertEvent(event.getPosition(), event.getId());
+        jpaEventRepository.insertEvent(event.getPosition(), event.getId());
     }
 }

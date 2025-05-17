@@ -23,10 +23,10 @@ public class TrackDaoAdapter implements TrackRepository {
     public List<TrackDto> getAll() {
         Result<Record2<UUID, String>> result = trackDao.selectTracks();
 
-        return result.map(record -> {
-            UUID v = record.get(TRACK.ID);
-            String v2 = record.get(TRACK.TITLE);
-            return new TrackDto(v, v2);
-        });
+        return result.map(record -> new TrackDto(record.get(TRACK.ID), record.get(TRACK.TITLE)));
+    }
+
+    public List<UUID> getAllTrackIds(){
+        return trackDao.selectAllTrackIds();
     }
 }

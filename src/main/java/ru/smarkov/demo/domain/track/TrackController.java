@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.smarkov.demo.domain.track.dto.TrackDto;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/track")
@@ -24,5 +25,10 @@ public class TrackController {
                 .findFirst()
                 .map(TrackDto::title)
                 .orElse("track not found");
+    }
+
+    @GetMapping("/all/ids")
+    public List<UUID> getAllTrackIds(){
+        return trackRepository.getAllTrackIds();
     }
 }
