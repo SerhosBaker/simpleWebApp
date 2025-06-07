@@ -55,6 +55,23 @@ DROP TABLE smarkov.track_collection;
 DROP TABLE smarkov.collection;
 ```
 
+```sql
+
+create table smarkov.track_progress
+(
+    invest_id  uuid                                   not null,
+    track_id   uuid                                   not null
+        constraint track_progress_fk_track
+            references smarkov.track,
+    inserted   timestamp with time zone default now() not null,
+    updated    timestamp with time zone default now() not null,
+    visibility boolean                  default true  not null
+);
+
+DROP TABLE smarkov.track_progress;
+
+```
+
 Затем я запускаю генерацию классов jooq вот так
 ```
 ./mvnw clean install -Dmaven.test.skip=true

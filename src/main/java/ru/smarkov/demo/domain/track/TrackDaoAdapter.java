@@ -3,6 +3,8 @@ package ru.smarkov.demo.domain.track;
 import org.jooq.Record2;
 import org.jooq.Result;
 import org.springframework.stereotype.Component;
+import ru.smarkov.demo.domain.track.dto.ExtendedTrackDto;
+import ru.smarkov.demo.domain.track.dto.TrackAndProgressDto;
 import ru.smarkov.demo.domain.track.dto.TrackDto;
 
 import java.util.List;
@@ -26,7 +28,20 @@ public class TrackDaoAdapter implements TrackRepository {
         return result.map(record -> new TrackDto(record.get(TRACK.ID), record.get(TRACK.TITLE)));
     }
 
-    public List<UUID> getAllTrackIds(){
+    public List<UUID> getAllTrackIds() {
         return trackDao.selectAllTrackIds();
+    }
+
+    @Override
+    public List<UUID> getAllTrackIdsLazy() {
+        return trackDao.selectAllTracksLazy();
+    }
+
+    public List<TrackAndProgressDto> getTrackAndProgresses(UUID investId) {
+        return trackDao.selectTrackAndProgresses(investId);
+    }
+
+    public List<ExtendedTrackDto> getAllWithProgress(UUID investId) {
+        return trackDao.selectAllWithProgress(investId);
     }
 }

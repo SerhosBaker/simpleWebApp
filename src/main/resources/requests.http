@@ -33,4 +33,9 @@ POST http://localhost:8080/event/postAny
 GET http://localhost:8080/track/first
 ###
 GET http://localhost:8080/track/all/ids
-
+###
+GET http://localhost:8080/track/all/ids/lazy
+###
+GET http://localhost:8080/track/all/ids/trackandprogress
+###
+GET http://localhost:8080/track/all/ids/trackandprogress/extended

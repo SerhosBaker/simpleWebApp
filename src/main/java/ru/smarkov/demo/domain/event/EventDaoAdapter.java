@@ -19,9 +19,9 @@ public class EventDaoAdapter implements EventRepository {
 
     @Override
     public List<EventDto> getAll() {
-        Result<Record2<Short, String>> v = eventDao.getAll();
-        List<EventRecord> v2 = v.into(EventRecord.class);
-        return v2.stream()
+        Result<Record2<Short, String>> events = eventDao.getAll();
+        List<EventRecord> recordEvents = events.into(EventRecord.class);
+        return recordEvents.stream()
                 .map(s -> new EventDto(s.getId(), s.getTitle()))
                 .toList();
     }

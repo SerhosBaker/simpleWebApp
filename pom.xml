@@ -103,6 +103,10 @@
             <artifactId>postgresql</artifactId>
             <scope>42.7.3</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
