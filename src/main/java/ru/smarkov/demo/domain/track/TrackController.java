@@ -1,5 +1,6 @@
 package ru.smarkov.demo.domain.track;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,8 @@ import static java.util.UUID.randomUUID;
 @RequestMapping("/track")
 public class TrackController {
 
-    private final TrackRepository trackRepository;
+    @Autowired
+    private TrackRepository trackRepository;
 
     public TrackController(TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
@@ -53,5 +55,14 @@ public class TrackController {
         UUID investId = UUID.fromString("f808d937-b396-47dc-bda4-48089c217301");
 
         return trackRepository.getAllWithProgress(investId);
+    }
+
+    @GetMapping("/getwithmap")
+    public List<UUID> getWithMap() {
+        List<UUID> trackIds = List.of(
+                randomUUID(),
+                UUID.fromString("320dfdc4-a7d4-4ab6-bf2e-28ca7dc6cfd3"));
+
+        return trackRepository.getWithMap(trackIds);
     }
 }

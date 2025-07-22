@@ -57,6 +57,22 @@ DROP TABLE smarkov.collection;
 
 ```sql
 
+create table smarkov.track
+(
+    id       uuid                                   not null
+        constraint track_pk
+            primary key,
+    title    text                                   not null,
+    inserted timestamp with time zone default now() not null,
+    updated  timestamp with time zone default now() not null,
+    rank     smallint                               not null
+        constraint unique_rank
+            unique
+                deferrable initially deferred
+        constraint check_rank_positive
+            check (rank > 0)
+);
+
 create table smarkov.track_progress
 (
     invest_id  uuid                                   not null,
@@ -69,6 +85,22 @@ create table smarkov.track_progress
 );
 
 DROP TABLE smarkov.track_progress;
+
+```
+
+```sql
+create table smarkov.event_cost
+(
+    id                uuid    not null
+        constraint event_cost_pk
+            primary key,
+    event_name        text    not null,
+    event_translation text    not null,
+    cost              integer not null,
+    skill_name        text    not null,
+    skill_translation text    not null,
+    skill_rank        integer
+);
 
 ```
 

@@ -42,6 +42,7 @@ kafka:
           mechanism: SCRAM-SHA-512
           jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="education" password="0z:,*>d#610>";
     consumer:
+      enabled: false
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: ru.smarkov.demo.configuration.kafka.CourseDeserializer
       group-id: education.test.consumer

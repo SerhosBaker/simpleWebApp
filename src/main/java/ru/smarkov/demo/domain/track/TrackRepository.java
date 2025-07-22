@@ -17,4 +17,6 @@ public interface TrackRepository {
     List<TrackAndProgressDto> getTrackAndProgresses(UUID investId);
 
     List<ExtendedTrackDto> getAllWithProgress(UUID investId);
+
+    List<UUID> getWithMap(List<UUID> trackIds);
 }

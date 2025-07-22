@@ -1,11 +1,13 @@
 package ru.smarkov.demo.domain.course;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import ru.smarkov.demo.domain.course.dto.CourseDto;
 
 @Service
+@ConditionalOnProperty(name = "kafka.education.consumer.enabled", havingValue = "true")
 public class CourseConsumer {
     @KafkaListener(topics = "education.activity-progress", containerFactory = "kafkaListenerContainerFactory")
     public void handleCourse(ConsumerRecord<String, CourseDto> record) {

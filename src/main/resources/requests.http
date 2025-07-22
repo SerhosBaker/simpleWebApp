@@ -39,3 +39,7 @@ GET http://localhost:8080/track/all/ids/lazy
 GET http://localhost:8080/track/all/ids/trackandprogress
 ###
 GET http://localhost:8080/track/all/ids/trackandprogress/extended
+###
+GET http://localhost:8080/track/getwithmap
+###
+GET http://localhost:8080/task/all/delete
