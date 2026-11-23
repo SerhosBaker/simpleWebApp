@@ -8,7 +8,7 @@ import ru.smarkov.demo.domain.track.dto.TrackDto;
 import java.util.List;
 import java.util.UUID;
 
-import static ru.smarkov.demo.jooq_3b.Tables.TRACK;
+import static ru.smarkov.demo.jooq.Tables.TRACK;
 
 @Component
 public class TrackDaoAdapter implements TrackRepository {

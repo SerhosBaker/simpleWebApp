@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-import static ru.smarkov.demo.jooq_3b.Tables.EVENT;
+import static ru.smarkov.demo.jooq.Tables.EVENT;
 
 @Component
 public class EventDao {

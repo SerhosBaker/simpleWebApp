@@ -17,6 +17,13 @@ insert into smarkov.event (id, title, "position")
 values ('320dfdc4-a7d4-4ab6-bf2e-28ca7dc6cfd2', 'meine frau', B'10101');
 
 DROP TABLE smarkov.event;
+
+create table if not exists smarkov.track
+(
+    id       uuid,
+    title    text not null
+);
+
 ```
 
 Затем я запускаю генерацию классов jooq вот так
