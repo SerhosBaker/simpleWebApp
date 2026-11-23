@@ -39,8 +39,8 @@ repositories {
 
 dependencies {
     // Lombok
-    compileOnly("org.projectlombok:lombok:1.18.32")
-    annotationProcessor("org.projectlombok:lombok:1.18.32")
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
 
     // MapStruct
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
@@ -56,11 +56,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
-    
-    // Spring
-    implementation("org.springframework:spring-context:6.0.13")
-    implementation("org.springframework:spring-jdbc:6.0.13")
-    
+
     // Database
     runtimeOnly("org.postgresql:postgresql:42.7.3")
     
@@ -98,7 +94,7 @@ jooq {
                     driver = "org.postgresql.Driver"
                     url = "jdbc:postgresql://admin-qa-invest-social-education-1.ix-m5.pg-test.tcsbank.ru:5432/admin_qa2"
                     user = "admin_rw"
-                    password = "some"
+                    password = "changeit"
                 }
                 generator.apply {
                     database.apply {

@@ -1,10 +1,10 @@
 spring:
   datasource:
     name: social_education_admin
-    url: jdbc:postgresql://pg-invest-education-admin-qa.m1.invest.cloud:5432/invest_education_admin?ApplicationName=${spring.application.name}
+    url: jdbc:postgresql://admin-qa-invest-social-education-1.ix-m5.pg-test.tcsbank.ru:5432/invest_education_admin?ApplicationName=${spring.application.name}
     driverClassName: org.postgresql.Driver
-    username: liquibase
-    password: liquibase
+    username: admin_rw
+    password: changeit
     hikari:
       pool_name: social_education_admin
       maximum-pool-size: 1
